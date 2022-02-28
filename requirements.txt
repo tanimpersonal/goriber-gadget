@@ -1,0 +1,21 @@
+1. Input Field
+2. Button
+3. Site name excluding Phone Hunter
+4. If result found then case, if not then case
+5. Phone name, image, phone brand name
+6. 3 Column
+7. Card button => detail, explore
+8. Details field in the section under search through details api
+9. Release date show otherwise not found
+10. Responsive. Mobile+Desktop
+11. Mobile 1 Column
+12. Arrow function use
+13. Commit 6 minimum
+14. Bonus--------
+---1. Sensor show. 
+2. Other show
+3. IF search result greater than 20 then show 20. not more than 20. 
+Optional----
+1. Show all more than 20..
+2. Add spinner
+3. Case sensitive search 
