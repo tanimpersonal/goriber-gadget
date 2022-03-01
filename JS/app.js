@@ -21,8 +21,8 @@ searchButton.addEventListener('click', function (event) {
 // display card
 const display = data => {
   const length= data.data.length;
-  console.log(length);
-  if (data.data.length > 0) {    
+  if (data.data.length > 0) { 
+      //  if product data is less than 20
     if (data.data.length < 20) {
       loadMore.style.display = 'none';
       spinner.classList.add('spinner-border');
@@ -31,19 +31,23 @@ const display = data => {
         cardCreator(myData);
       }
       spinner.classList.add('d-none');
-    } else if (data.data.length > 20) {
+    } 
+    // if product data is greater than 20
+    else if (data.data.length > 20) {
       spinner.classList.add('spinner-border');
+      spinner.style.display= 'flex';
       loadButton.removeAttribute('disabled');
       loadMore.style.display = 'block';
-      spinner.style.display= 'flex';
+      // first 20 product show
       for(let i=0; i<20; i++){
-        console.log(data.data[i]);
+
         cardCreator(data.data[i]);
       }
       spinner.classList.add('d-none');
       loadButton.addEventListener('click',function(){
+        // product after 20
         for(let i=length-1; i>=20; i--){
-          console.log(data.data[i]);
+  
           cardCreator(data.data[i]);
         }
         loadButton.setAttribute('disabled',true);
@@ -51,7 +55,9 @@ const display = data => {
       
     }
 
-  } else {
+  } 
+  // if product data is less than 0 means not found
+  else { 
     spinner.classList.add('spinner-border');
     spinner.classList.add('d-flex');
     loadMore.style.display = 'none';
@@ -69,10 +75,10 @@ const detailSection = document.getElementById('detail-section');
 // detail section end
 // function moredetail
 function moreDetail(id, image) {
-  console.log(id);
+  const theImage= image;
   fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     .then(Response => Response.json())
-    .then(data => displayMore(data, image))
+    .then(data => displayMore(data, theImage))
 }
 // function more detail end
 // details section
@@ -83,6 +89,7 @@ const displayMore = (data, image) => {
     <div class="card-body">
       <p id="release" class="card-text"></p>
       <p id="sensor"></p>
+      <p id="other"></p>
     </div>
   </div>`
   const release = document.getElementById('release');
@@ -92,13 +99,18 @@ const displayMore = (data, image) => {
     release.innerText = 'Release Date: Not Found';
   }
   const span = document.getElementById('sensor');
-  console.log(data.data.mainFeatures.sensors);
   if (data.data.mainFeatures.sensors != '') {
     let total = '';
     for (const sensor of data.data.mainFeatures.sensors) {
       total = total + sensor + ',';
     }
     span.innerText = 'Sensors: ' + total;
+  }
+  const other= document.getElementById('other');
+  if(data.data.others==undefined){
+    other.innerText= 'Other: Not Applicable'
+  } else{
+    other.innerHTML=`Others: ${Object.values(data.data.others)}`;
   }
   window.scroll({
     top: 60,
