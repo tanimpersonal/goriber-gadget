@@ -87,6 +87,7 @@ const displayMore = (data, image) => {
   detailSection.innerHTML = `<div class="card h-100 w-50 custom-card">
     <img src="${image}" class="card-img-top" alt="...">
     <div class="card-body">
+    <p id="main-feature"></p>
       <p id="release" class="card-text"></p>
       <p id="sensor"></p>
       <p id="other"></p>
@@ -112,6 +113,8 @@ const displayMore = (data, image) => {
   } else{
     other.innerHTML=`Others: ${Object.values(data.data.others)}`;
   }
+  const mainFeature=document.getElementById('main-feature');
+  mainFeature.innerText=`Mainfeatures: ${Object.values(data.data.mainFeatures)}`;
   window.scroll({
     top: 60,
     behavior: 'smooth'
