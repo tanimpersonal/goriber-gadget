@@ -6,10 +6,12 @@ const loadMore = document.getElementById('load-more');
 loadMore.style.display = 'none';
 const loadButton = document.getElementById('load-button');
 const spinner = document.getElementById('my-spinner');
+const loadSection= document.getElementById('load-section');
 // variable end
 // search click
 searchButton.addEventListener('click', function (event) {
   const inputValue = inputField.value;
+  loadSection.textContent='';
   cardSection.textContent = '';
   inputField.value = '';
   detailSection.textContent = '';
@@ -46,9 +48,9 @@ const display = data => {
       spinner.classList.add('d-none');
       loadButton.addEventListener('click', function () {
         // product after 20
-        for (let i = length - 1; i >= 20; i--) {
-
-          cardCreator(data.data[i]);
+        loadSection.textContent='';
+        for (let i = data.data.length - 1; i >= 20; i--) {
+          loadCreator(data.data[i]);
         }
         loadButton.setAttribute('disabled', true);
       })
@@ -151,3 +153,18 @@ const cardCreator = (myData) => {
   cardSection.appendChild(div);
 }
 // card create end
+// load more section
+const loadCreator = (myData) => {
+  const div = document.createElement('div');
+  div.innerHTML = `<div class="card h-100 custom-card">
+      <img src="${myData.image}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">${myData.phone_name}</h5>
+        <p class="card-text">Brand Name: ${myData.brand}</p>
+        <button class="btn btn-primary" onclick="moreDetail('${myData.slug}','${myData.image}')">Explore More!</button>
+      </div>
+    </div>`
+  div.classList.add('col');
+  loadSection.appendChild(div);
+}
+// load more section end
