@@ -6,14 +6,14 @@ const loadMore = document.getElementById('load-more');
 loadMore.style.display = 'none';
 const loadButton = document.getElementById('load-button');
 const spinner = document.getElementById('my-spinner');
-const loadSection= document.getElementById('load-section');
+const loadSection = document.getElementById('load-section');
 // variable end
 // search click
 searchButton.addEventListener('click', function (event) {
   spinner.classList.add('spinner-border');
   spinner.style.display = 'flex';
   const inputValue = inputField.value;
-  loadSection.textContent='';
+  loadSection.textContent = '';
   cardSection.textContent = '';
   inputField.value = '';
   detailSection.textContent = '';
@@ -24,13 +24,11 @@ searchButton.addEventListener('click', function (event) {
 // search click end
 // display card
 const display = data => {
-  const length = data.data.length;
   if (data.data.length > 0) {
     //  if product data is less than 20
     if (data.data.length < 20) {
-      loadMore.style.display = 'none';      
+      loadMore.style.display = 'none';
       for (const myData of data.data) {
-        // console.log(myData);
         cardCreator(myData);
       }
       spinner.style.display = 'none';
@@ -40,14 +38,14 @@ const display = data => {
       loadButton.removeAttribute('disabled');
       loadMore.style.display = 'block';
       // first 20 product show
-      for (let i = 0; i <20; i++) {
+      for (let i = 0; i < 20; i++) {
 
         cardCreator(data.data[i]);
       }
       spinner.style.display = 'none';
       loadButton.addEventListener('click', function () {
         // product after 20
-        loadSection.textContent='';
+        loadSection.textContent = '';
         for (let i = data.data.length - 1; i >= 20; i--) {
           loadCreator(data.data[i]);
         }

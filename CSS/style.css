@@ -1,10 +1,11 @@
-.not-found{
+.not-found {
     width: 100%;
     font-size: 70px;
     text-align: center;
     margin: 5% 0;
 }
-.custom-card{
+
+.custom-card {
     width: 70%;
     margin: 5% auto;
 
