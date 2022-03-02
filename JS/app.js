@@ -93,12 +93,15 @@ const displayMore = (data, image) => {
       <p id="other"></p>
     </div>
   </div>`
+  // release
   const release = document.getElementById('release');
   if (data.data.releaseDate != '') {
     release.innerText = data.data.releaseDate;
   } else {
     release.innerText = 'Release Date: Not Found';
   }
+  // release
+  // sensor
   const span = document.getElementById('sensor');
   if (data.data.mainFeatures.sensors != '') {
     let total = '';
@@ -107,18 +110,25 @@ const displayMore = (data, image) => {
     }
     span.innerText = 'Sensors: ' + total;
   }
+  // sensor end
+  // other
   const other= document.getElementById('other');
   if(data.data.others==undefined){
     other.innerText= 'Other: Not Applicable'
   } else{
     other.innerHTML=`Others: ${Object.values(data.data.others)}`;
   }
+  // other end
+  // main feature 
   const mainFeature=document.getElementById('main-feature');
   mainFeature.innerText=`Mainfeatures: ${Object.values(data.data.mainFeatures)}`;
+  // main feature
+  // scroll
   window.scroll({
     top: 60,
     behavior: 'smooth'
   });
+  // scroll
 }
 //details section end
 // card create
