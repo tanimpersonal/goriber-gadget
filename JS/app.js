@@ -10,6 +10,8 @@ const loadSection= document.getElementById('load-section');
 // variable end
 // search click
 searchButton.addEventListener('click', function (event) {
+  spinner.classList.add('spinner-border');
+  spinner.style.display = 'flex';
   const inputValue = inputField.value;
   loadSection.textContent='';
   cardSection.textContent = '';
@@ -26,18 +28,15 @@ const display = data => {
   if (data.data.length > 0) {
     //  if product data is less than 20
     if (data.data.length < 20) {
-      loadMore.style.display = 'none';
-      spinner.classList.add('spinner-border');
+      loadMore.style.display = 'none';      
       for (const myData of data.data) {
         // console.log(myData);
         cardCreator(myData);
       }
-      spinner.classList.add('d-none');
+      spinner.style.display = 'none';
     }
     // if product data is greater than 20
     else if (data.data.length > 20) {
-      spinner.classList.add('spinner-border');
-      spinner.style.display = 'flex';
       loadButton.removeAttribute('disabled');
       loadMore.style.display = 'block';
       // first 20 product show
@@ -45,7 +44,7 @@ const display = data => {
 
         cardCreator(data.data[i]);
       }
-      spinner.classList.add('d-none');
+      spinner.style.display = 'none';
       loadButton.addEventListener('click', function () {
         // product after 20
         loadSection.textContent='';
@@ -58,16 +57,13 @@ const display = data => {
   }
   // if product data is less than 0 means not found
   else {
-    spinner.classList.add('spinner-border');
-    spinner.classList.add('d-flex');
     loadMore.style.display = 'none';
     cardSection.innerHTML = `
         <div class="not-found"><i class="fa-solid d-inline-block fa-exclamation"></i><i class="fa-solid d-inline-block fa-heart-crack"></i>
         <p>No Result Found</p></div>
         `
   }
-  spinner.classList.remove('d-flex');
-  spinner.classList.add('d-none');
+  spinner.style.display = 'none';
 }
 // display card end
 // detail section
